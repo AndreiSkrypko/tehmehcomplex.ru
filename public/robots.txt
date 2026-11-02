@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://romedov.by/sitemap.xml
