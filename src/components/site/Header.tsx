@@ -9,6 +9,7 @@ import {
   TELEGRAM_HREF,
   VIBER_HREF,
 } from "@/lib/contacts";
+
 type NavItem =
   | { kind: "hash"; hash: string; label: string }
   | { kind: "route"; to: string; label: string };
@@ -47,7 +48,6 @@ export function Header({
 }: {
   onRequest: () => void;
   forceSolid?: boolean;
-  /** Номер для иконки «Позвонить» (на странице транспорта — свой) */
   phoneHref?: string;
   telegramHref?: string;
   viberHref?: string;
@@ -65,26 +65,26 @@ export function Header({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Over the hero photo the bar is transparent with light contents;
-  // once scrolled (or the mobile menu is open) it becomes a solid white bar.
   const solid = forceSolid || scrolled || open;
 
   return (
     <header
-      className={`site-header ${solid ? "site-header--solid" : "site-header--glass"}`}
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        solid ? "bg-background shadow-[0_1px_0_0_var(--color-border)]" : "bg-transparent"
+      }`}
     >
-      <div className="site-header__inner">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 lg:px-8">
         {isHome ? (
-          <a href="#top" aria-label="ТехМехКомплекс — на главную" className="min-w-0 max-w-[58%] sm:max-w-none">
-            <Logo invert={!solid} variant="header" />
+          <a href="#top" aria-label="ТехМехКомплекс — на главную" className="inline-flex items-center">
+            <Logo invert={!solid} />
           </a>
         ) : (
-          <Link to="/" aria-label="ТехМехКомплекс — на главную" className="min-w-0 max-w-[58%] sm:max-w-none">
-            <Logo invert={!solid} variant="header" />
+          <Link to="/" aria-label="ТехМехКомплекс — на главную" className="inline-flex items-center">
+            <Logo invert={!solid} />
           </Link>
         )}
 
-        <nav className="site-header__nav">
+        <nav className="hidden items-center gap-6 xl:flex">
           {NAV.map((n) => {
             if (n.kind === "route") {
               return (
@@ -101,7 +101,7 @@ export function Header({
           })}
         </nav>
 
-        <div className="site-header__channels">
+        <div className="hidden items-center xl:flex">
           <div className="flex items-center gap-2">
             {channels.map(({ href, label, Icon }) => (
               <a
@@ -139,24 +139,24 @@ export function Header({
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
             className={`flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-lg border transition-colors ${
-            solid ? "border-border" : "border-background/30 bg-background/10 backdrop-blur-sm"
-          }`}
-        >
-          <span
-            className={`h-0.5 w-5 transition-transform ${solid ? "bg-foreground" : "bg-background"} ${
-              open ? "translate-y-2 rotate-45" : ""
+              solid ? "border-border" : "border-background/30 bg-background/10 backdrop-blur-sm"
             }`}
-          />
-          <span
-            className={`h-0.5 w-5 transition-opacity ${solid ? "bg-foreground" : "bg-background"} ${
-              open ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`h-0.5 w-5 transition-transform ${solid ? "bg-foreground" : "bg-background"} ${
-              open ? "-translate-y-2 -rotate-45" : ""
-            }`}
-          />
+          >
+            <span
+              className={`h-0.5 w-5 transition-transform ${solid ? "bg-foreground" : "bg-background"} ${
+                open ? "translate-y-2 rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`h-0.5 w-5 transition-opacity ${solid ? "bg-foreground" : "bg-background"} ${
+                open ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`h-0.5 w-5 transition-transform ${solid ? "bg-foreground" : "bg-background"} ${
+                open ? "-translate-y-2 -rotate-45" : ""
+              }`}
+            />
           </button>
         </div>
       </div>

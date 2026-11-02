@@ -56,13 +56,13 @@ export function ProductionSection() {
   return (
     <section
       id="production"
-      className="site-section-tight bg-gradient-to-br from-steel/70 via-graphite to-graphite text-background"
+      className="scroll-mt-20 bg-gradient-to-br from-steel/70 via-graphite to-graphite pt-14 pb-20 text-background lg:pt-16 lg:pb-24"
     >
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <p className="font-display text-xs font-semibold uppercase tracking-[0.28em] text-brand">
           Производство
         </p>
-        <h2 className="mt-3 max-w-3xl font-display text-2xl font-semibold uppercase leading-tight lg:text-4xl">
+        <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold uppercase leading-tight lg:text-5xl">
           От идеи до готового продукта
         </h2>
         <p className="mt-5 max-w-2xl text-sm leading-relaxed text-background/70 lg:text-base">

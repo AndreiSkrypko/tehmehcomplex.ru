@@ -215,7 +215,7 @@ function Index() {
       <Header onRequest={open} />
 
       {/* HERO */}
-      <section className="site-hero">
+      <section className="relative isolate flex min-h-[88vh] flex-col justify-end overflow-hidden lg:min-h-screen">
         <img
           src={heroShopImg}
           alt="Фрезерная обработка стальной детали на обрабатывающем центре с ЧПУ"
@@ -228,27 +228,27 @@ function Index() {
         {/* On narrow screens the photo crops in, so add a flat scrim for legibility */}
         <div className="absolute inset-0 bg-graphite/45 lg:hidden" />
 
-        <div className="site-hero__content">
-          <div className="flex items-center gap-3">
-            <span className="h-7 w-1 shrink-0 bg-brand" />
+        <div className="relative mx-auto w-full max-w-7xl px-5 pb-12 pt-36 lg:px-8 lg:pb-16 lg:pt-44">
+          <div className="flex items-center gap-4">
+            <span className="h-8 w-1 shrink-0 bg-brand" />
             <p className="font-display text-[11px] font-semibold uppercase tracking-[0.28em] text-background/90 lg:text-xs">
               Металлообработка на ЧПУ · Смоленск
             </p>
           </div>
 
-          <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold uppercase leading-[1.06] text-background sm:text-4xl lg:text-5xl">
+          <h1 className="mt-8 max-w-4xl font-display text-4xl font-semibold uppercase leading-[1.06] text-background sm:text-5xl lg:text-6xl">
             Контрактное производство на ЧПУ:{" "}
             <span className="text-brand">от модели до отгрузки партии</span>
           </h1>
 
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-background/85 lg:text-base">
+          <p className="mt-7 max-w-2xl text-base leading-relaxed text-background/85 lg:text-lg">
             Резка, гибка, фрезеровка, токарка и сварка — сталь,{" "}
             <span className="font-semibold text-lime">латунь, бронза</span>, инженерные пластмассы.
             Допуск <span className="font-semibold text-lime">±0,02 мм</span> по согласованному ТЗ.
-            Цех в Смоленске. Первичная смета — бесплатно.
+            Производство в Смоленске. Первичная смета — бесплатно.
           </p>
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <button
               onClick={open}
               className="rounded-full bg-brand px-9 py-4 font-display text-sm font-semibold uppercase tracking-[0.14em] text-brand-foreground shadow-lg shadow-carbon/25 transition-transform hover:-translate-y-0.5"
@@ -265,7 +265,7 @@ function Index() {
         </div>
 
         <div className="relative border-t border-background/15 bg-background/10 backdrop-blur-md">
-          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-5 gap-y-5 px-5 py-6 lg:grid-cols-4 lg:px-8">
+          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-7 px-5 py-8 lg:grid-cols-4 lg:px-8">
             {FACTS.map((f) => (
               <div key={f.l}>
                 <p className="font-display text-2xl font-semibold text-background lg:text-3xl">
@@ -281,18 +281,18 @@ function Index() {
       </section>
 
       {/* ADVANTAGES */}
-      <section id="advantages" className="site-section-tight bg-secondary">
+      <section id="advantages" className="scroll-mt-20 bg-secondary pt-14 pb-20 lg:pt-16 lg:pb-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="font-display text-xs font-semibold uppercase tracking-[0.28em] text-lime-deep">
-            Почему ТехМехКомплекс
+            Почему выбирают ТехМехКомплекс
           </p>
-          <h2 className="mt-3 max-w-3xl font-display text-2xl font-semibold uppercase leading-tight lg:text-4xl">
+          <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold uppercase leading-tight lg:text-5xl">
             Ваши задачи — наша зона ответственности
           </h2>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
             {ADVANTAGES.map((a, i) => (
-              <div key={a.t} className="rounded-2xl bg-background p-6 lg:p-7">
+              <div key={a.t} className="rounded-2xl bg-background p-7 lg:p-9">
                 <div className="flex items-center gap-4">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand font-display text-base font-bold text-brand-foreground">
                     {`0${i + 1}`}
@@ -301,14 +301,14 @@ function Index() {
                     {a.t}
                   </h3>
                 </div>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-5 text-sm leading-relaxed text-muted-foreground lg:text-base">
                   {a.d}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 flex flex-col items-center justify-between gap-5 rounded-2xl bg-brand px-6 py-6 text-brand-foreground lg:flex-row lg:px-8">
+          <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-2xl bg-brand px-7 py-8 text-brand-foreground lg:flex-row lg:px-10">
             <p className="font-display text-xl font-semibold uppercase leading-tight lg:text-2xl">
               Пришлите чертёж — подберём решение
             </p>
@@ -323,22 +323,22 @@ function Index() {
       </section>
 
       {/* CASES */}
-      <section id="cases" className="site-section-tight">
+      <section id="cases" className="scroll-mt-20 pt-14 pb-20 lg:pt-16 lg:pb-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="max-w-3xl">
             <p className="font-display text-xs font-semibold uppercase tracking-[0.28em] text-lime-deep">
               Кейсы
             </p>
-            <h2 className="mt-3 font-display text-2xl font-semibold uppercase leading-tight lg:text-4xl">
+            <h2 className="mt-4 font-display text-3xl font-semibold uppercase leading-tight lg:text-5xl">
               Решаем задачи наших клиентов — точно в срок и по ТЗ
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-5 text-sm leading-relaxed text-muted-foreground lg:text-base">
               Реальные примеры производства: от единичных заказов до серий. С гарантией результата и
               экономией бюджета.
             </p>
           </div>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {CASES.map((c) => (
               <article
                 key={c.title}
@@ -384,20 +384,20 @@ function Index() {
       <ProductionSection />
 
       {/* CONTACTS */}
-      <section id="contacts" className="site-section-tight">
+      <section id="contacts" className="scroll-mt-20 pt-14 pb-20 lg:pt-16 lg:pb-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="font-display text-xs font-semibold uppercase tracking-[0.28em] text-lime-deep">
             Контакты
           </p>
-          <h2 className="mt-3 font-display text-2xl font-semibold uppercase leading-tight lg:text-4xl">
+          <h2 className="mt-4 font-display text-3xl font-semibold uppercase leading-tight lg:text-5xl">
             Свяжитесь с нами
           </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground lg:text-base">
             Свяжитесь с нами для получения дополнительной информации или оформления заказа.
             Консультация бесплатно.
           </p>
 
-          <div className="mt-8 grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="mt-12 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
             <div className="rounded-2xl border border-border p-7 lg:p-8">
               <ContactPhones variant="section" />
 
@@ -492,7 +492,7 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-graphite py-10 text-background/70 lg:py-12">
+      <footer className="bg-graphite py-14 text-background/70">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="flex flex-wrap items-start justify-between gap-10">
             <div className="max-w-xs">
