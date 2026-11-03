@@ -17,3 +17,12 @@ npm run preview
 ```
 
 Конфигурация компании: `src/lib/site.ts`, `src/lib/contacts.ts`, `src/lib/legal.ts`.
+
+## Деплой (Vercel)
+
+- Сборка: `npm run build:vercel` → статика в `.vercel/output/static`, prerender всех страниц.
+- `robots.txt` и `sitemap.xml` генерируются при сборке (`scripts/generate-seo.mjs`).
+- Форма заявки на Vercel: `api/submit.ts` (не PHP). В проекте Vercel задайте переменные из `.env.example` (`TELEGRAM_*`, при необходимости SMTP).
+- На PHP-хостинге: скопируйте `public/api/config.example.php` → `config.php`, заявки идут на `/api/submit.php`.
+
+После push на `main` — redeploy в Vercel. Домен: `tehmehcomplex.ru`.

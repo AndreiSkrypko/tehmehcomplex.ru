@@ -17,6 +17,7 @@ function run(command, args) {
 }
 
 run("node", ["scripts/generate-og.mjs"]);
+run("node", ["scripts/generate-seo.mjs"]);
 run("npx", ["vite", "build"]);
 
 const candidates = [

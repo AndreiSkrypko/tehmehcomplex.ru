@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://romedov.by/sitemap.xml
+Disallow: /api/
+
+Sitemap: https://tehmehcomplex.ru/sitemap.xml

@@ -9,7 +9,9 @@ export async function sendRequest(formData: FormData): Promise<SendResult> {
       return { ok: true };
     }
 
-    const response = await fetch("/api/submit.php", {
+    const submitUrl = import.meta.env.VITE_SUBMIT_URL ?? "/api/submit.php";
+
+    const response = await fetch(submitUrl, {
       method: "POST",
       body: formData,
     });

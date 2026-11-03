@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite dev",
     "generate:og": "node scripts/generate-og.mjs",
-    "build": "node scripts/generate-og.mjs && vite build && node scripts/copy-dist.mjs",
+    "build": "node scripts/generate-og.mjs && node scripts/generate-seo.mjs && vite build && node scripts/copy-dist.mjs",
     "build:vercel": "node scripts/build-vercel.mjs",
     "build:dev": "vite build --mode development && node scripts/copy-dist.mjs",
     "preview": "npx --yes serve dist",

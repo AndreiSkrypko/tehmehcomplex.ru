@@ -19,8 +19,8 @@ if (!is_file($configPath)) {
 $config = require $configPath;
 $token = trim((string) ($config['telegram_bot_token'] ?? ''));
 $chatId = trim((string) ($config['telegram_chat_id'] ?? ''));
-$emailTo = trim((string) ($config['email_to'] ?? 'info@romedov.by'));
-$emailFrom = trim((string) ($config['email_from'] ?? 'noreply@romedov.by'));
+$emailTo = trim((string) ($config['email_to'] ?? 'tehmehkomplex@inbox.ru'));
+$emailFrom = trim((string) ($config['email_from'] ?? 'noreply@tehmehcomplex.ru'));
 
 if ($emailTo === '') {
     http_response_code(500);
@@ -77,7 +77,7 @@ if (is_array($file) && ($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_NO_
 }
 
 $textLines = [
-    'Новая заявка с сайта romedov.by',
+    'Новая заявка с сайта tehmehcomplex.ru',
     '',
     'Имя: ' . $name,
     'Телефон: ' . $phone,
