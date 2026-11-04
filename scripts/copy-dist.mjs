@@ -19,6 +19,13 @@ if (!source) {
   process.exit(1);
 }
 
+const required = ["robots.txt", "sitemap.xml", "api/submit.php"];
+const missing = required.filter((rel) => !existsSync(resolve(source, rel)));
+if (missing.length > 0) {
+  console.error(`Build output is incomplete (missing ${missing.join(", ")})`);
+  process.exit(1);
+}
+
 rmSync(target, { recursive: true, force: true });
 cpSync(source, target, { recursive: true });
 console.log(`Copied static build from ${source} to ${target}`);

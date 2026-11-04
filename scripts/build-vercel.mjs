@@ -19,20 +19,12 @@ function run(command, args) {
 run("node", ["scripts/generate-og.mjs"]);
 run("node", ["scripts/generate-seo.mjs"]);
 run("npx", ["vite", "build"]);
+run("node", ["scripts/copy-dist.mjs"]);
 
-const candidates = [
-  resolve(root, ".vercel/output/static"),
-  resolve(root, ".output/public"),
-];
-
-const outputDir = candidates.find((path) => existsSync(resolve(path, "index.html")));
-
-if (!outputDir) {
-  console.error("Vercel build failed: static index.html not found.");
-  for (const path of candidates) {
-    console.error(`  checked: ${path}`);
-  }
+const distDir = resolve(root, "dist");
+if (!existsSync(resolve(distDir, "index.html"))) {
+  console.error("Vercel build failed: dist/index.html not found after copy-dist.");
   process.exit(1);
 }
 
-console.log(`Vercel static build ready at ${outputDir}`);
+console.log(`Vercel static build ready at ${distDir}`);
