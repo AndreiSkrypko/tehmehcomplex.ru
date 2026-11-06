@@ -56,14 +56,6 @@ const cards = [
     badge: "BS 200 FH",
   },
   {
-    file: "transport.svg",
-    accent: "#ECE92C",
-    tag: "ТРАНСПОРТНЫЕ",
-    title: "УСЛУГИ",
-    subtitle: "Беларусь · Россия · 0–20 тонн",
-    badge: "ГРУЗОПЕРЕВОЗКИ",
-  },
-  {
     file: "svarochnye-raboty.svg",
     accent: "#7FD44A",
     tag: "СВАРОЧНЫЕ",

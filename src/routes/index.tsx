@@ -9,15 +9,8 @@ import { Logo } from "@/components/site/Logo";
 import { RequestModal } from "@/components/site/RequestModal";
 import { MailIcon, PhoneIcon, TelegramIcon, ViberIcon } from "@/components/site/icons";
 import {
-  ACCESS_NOTE,
   ADDRESS_LEGAL,
   ADDRESS_POSTAL,
-  ADDRESS_PRODUCTION,
-  PRODUCTION_COORDINATES,
-  PRODUCTION_LAT,
-  PRODUCTION_LON,
-  PRODUCTION_MAP_EMBED_SRC,
-  PRODUCTION_MAP_HREF,
   EMAIL,
   EMAIL_HREF,
   PHONE_HREF,
@@ -92,25 +85,10 @@ export const Route = createFileRoute("/")({
               ],
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "ул. Рыленкова, д. 50, оф. 7",
-                postalCode: "214036",
+                streetAddress: "ул. Докучаева, д. 5, оф. 1",
+                postalCode: "214030",
                 addressLocality: "Смоленск",
                 addressCountry: "RU",
-              },
-              location: {
-                "@type": "Place",
-                name: "Производство",
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress: "ул. Нормандия-Неман, д. 23",
-                  addressLocality: "Смоленск",
-                  addressCountry: "RU",
-                },
-                geo: {
-                  "@type": "GeoCoordinates",
-                  latitude: PRODUCTION_LAT,
-                  longitude: PRODUCTION_LON,
-                },
               },
               knowsAbout: [
                 "фрезерование на ЧПУ",
@@ -122,8 +100,6 @@ export const Route = createFileRoute("/")({
                 "обработка пластика на чпу",
                 "литьё под давлением",
                 "литьё в формах",
-                "транспортные услуги",
-                "грузоперевозки по центральной России",
                 "механическая обработка металла",
               ],
             },
@@ -137,7 +113,7 @@ export const Route = createFileRoute("/")({
 
 const FACTS = [
   { v: "±0,02 мм", l: "допуск на мехобработке по ТЗ" },
-  { v: "Смоленск", l: "цех на ул. Нормандия-Неман" },
+  { v: "Смоленск", l: "регион контрактного производства" },
   { v: "24–48 ч", l: "типовой расчёт по чертежу" },
   { v: "ОТК", l: "протокол контроля по запросу" },
 ];
@@ -397,7 +373,7 @@ function Index() {
             Консультация бесплатно.
           </p>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="mt-12 max-w-xl">
             <div className="rounded-2xl border border-border p-7 lg:p-8">
               <ContactPhones variant="section" />
 
@@ -418,25 +394,6 @@ function Index() {
               <dl className="mt-8 space-y-5 border-t border-border pt-7 text-sm">
                 <div>
                   <dt className="text-xs uppercase tracking-wider text-muted-foreground">
-                    Адрес производства
-                  </dt>
-                  <dd className="mt-1.5 font-medium">{ADDRESS_PRODUCTION}</dd>
-                  {ACCESS_NOTE ? (
-                    <dd className="mt-1 text-muted-foreground">{ACCESS_NOTE}</dd>
-                  ) : null}
-                  <dd className="mt-1">
-                    <a
-                      href={PRODUCTION_MAP_HREF}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-muted-foreground tabular-nums transition-colors hover:text-lime-deep"
-                    >
-                      {PRODUCTION_COORDINATES}
-                    </a>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-xs uppercase tracking-wider text-muted-foreground">
                     Юридический адрес
                   </dt>
                   <dd className="mt-1.5 leading-relaxed">{ADDRESS_LEGAL}</dd>
@@ -455,26 +412,6 @@ function Index() {
               >
                 Рассчитать стоимость
               </button>
-            </div>
-
-            <div className="flex flex-col overflow-hidden rounded-2xl border border-border bg-secondary">
-              <iframe
-                title="Карта: производство «ТехМехКомплекс», Смоленск, ул. Нормандия-Неман, 23"
-                loading="lazy"
-                className="min-h-80 w-full flex-1"
-                src={PRODUCTION_MAP_EMBED_SRC}
-              />
-              <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border bg-background px-5 py-4">
-                <p className="text-sm font-medium">{ADDRESS_PRODUCTION}</p>
-                <a
-                  href={PRODUCTION_MAP_HREF}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-xs font-semibold uppercase tracking-wider text-lime-deep underline-offset-4 hover:underline"
-                >
-                  Построить маршрут
-                </a>
-              </div>
             </div>
           </div>
 
@@ -539,7 +476,7 @@ function Index() {
 
             <div className="text-sm">
               <ContactPhones variant="footer" />
-              <p className="mt-4 leading-relaxed">{ADDRESS_PRODUCTION}</p>
+              <p className="mt-4 leading-relaxed">{ADDRESS_LEGAL}</p>
               <p className="mt-1 leading-relaxed">ИНН {ORG_INN}</p>
             </div>
           </div>

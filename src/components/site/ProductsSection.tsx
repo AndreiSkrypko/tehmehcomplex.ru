@@ -64,12 +64,6 @@ export function ProductsSection() {
                 >
                   Производство в Смоленске →
                 </a>
-                <Link
-                  to="/transport"
-                  className="inline-flex items-center gap-2 font-display text-xs font-semibold uppercase tracking-[0.14em] text-lime-deep transition-colors hover:text-ink"
-                >
-                  Транспортные услуги →
-                </Link>
               </div>
               <img
                 src={partsImg}

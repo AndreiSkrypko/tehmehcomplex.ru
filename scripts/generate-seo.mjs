@@ -42,7 +42,6 @@ const lastmod = new Date().toISOString().slice(0, 10);
 
 const urls = [
   urlEntry(`${SITE_URL}/`, { changefreq: "weekly", priority: "1.0" }),
-  urlEntry(`${SITE_URL}/transport`, { changefreq: "weekly", priority: "0.9" }),
   ...equipmentSlugs.map((slug) =>
     urlEntry(`${SITE_URL}/production/${slug}`, {
       changefreq: "monthly",

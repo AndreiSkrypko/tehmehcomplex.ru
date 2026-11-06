@@ -15,9 +15,9 @@ type NavItem =
   | { kind: "route"; to: string; label: string };
 
 const NAV: NavItem[] = [
+  { kind: "route", to: "/", label: "Главная" },
   { kind: "hash", hash: "#cases", label: "Кейсы" },
   { kind: "hash", hash: "#products", label: "Продукция" },
-  { kind: "route", to: "/transport", label: "Транспорт" },
   { kind: "hash", hash: "#production", label: "Производство" },
   { kind: "hash", hash: "#contacts", label: "Контакты" },
 ];

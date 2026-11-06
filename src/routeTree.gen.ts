@@ -10,18 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TransportRouteImport } from './routes/transport'
 import { Route as GeoSlugRouteImport } from './routes/geo/$slug'
 import { Route as ProductionSlugRouteImport } from './routes/production/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TransportRoute = TransportRouteImport.update({
-  id: '/transport',
-  path: '/transport',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GeoSlugRoute = GeoSlugRouteImport.update({
@@ -37,34 +31,30 @@ const ProductionSlugRoute = ProductionSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/transport': typeof TransportRoute
   '/geo/$slug': typeof GeoSlugRoute
   '/production/$slug': typeof ProductionSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/transport': typeof TransportRoute
   '/geo/$slug': typeof GeoSlugRoute
   '/production/$slug': typeof ProductionSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/transport': typeof TransportRoute
   '/geo/$slug': typeof GeoSlugRoute
   '/production/$slug': typeof ProductionSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/transport' | '/geo/$slug' | '/production/$slug'
+  fullPaths: '/' | '/geo/$slug' | '/production/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/transport' | '/geo/$slug' | '/production/$slug'
-  id: '__root__' | '/' | '/transport' | '/geo/$slug' | '/production/$slug'
+  to: '/' | '/geo/$slug' | '/production/$slug'
+  id: '__root__' | '/' | '/geo/$slug' | '/production/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  TransportRoute: typeof TransportRoute
   GeoSlugRoute: typeof GeoSlugRoute
   ProductionSlugRoute: typeof ProductionSlugRoute
 }
@@ -76,13 +66,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/transport': {
-      id: '/transport'
-      path: '/transport'
-      fullPath: '/transport'
-      preLoaderRoute: typeof TransportRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/geo/$slug': {
@@ -104,7 +87,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  TransportRoute: TransportRoute,
   GeoSlugRoute: GeoSlugRoute,
   ProductionSlugRoute: ProductionSlugRoute,
 }
