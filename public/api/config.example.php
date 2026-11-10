@@ -4,7 +4,7 @@
  * Заявка сначала уходит на почту, затем дублируется в Telegram (если указан бот).
  */
 return [
-    'email_to' => 'tehmehkomplex@inbox.ru',
+    'email_to' => 'info@tehmehcomplex.ru',
     'email_from' => 'noreply@tehmehcomplex.ru',
 
     'telegram_bot_token' => '',

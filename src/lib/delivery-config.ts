@@ -1,6 +1,6 @@
 ﻿/** Настройки доставки заявок (почта + Telegram). На Vercel — переменные окружения; на PHP-хостинге — public/api/config.php */
 export const DELIVERY_CONFIG = {
-  emailTo: process.env.EMAIL_TO ?? "tehmehkomplex@inbox.ru",
+  emailTo: process.env.EMAIL_TO ?? "info@tehmehcomplex.ru",
   emailFrom: process.env.EMAIL_FROM ?? "noreply@tehmehcomplex.ru",
 
   smtpHost: process.env.SMTP_HOST ?? "",

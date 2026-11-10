@@ -19,7 +19,7 @@ if (!is_file($configPath)) {
 $config = require $configPath;
 $token = trim((string) ($config['telegram_bot_token'] ?? ''));
 $chatId = trim((string) ($config['telegram_chat_id'] ?? ''));
-$emailTo = trim((string) ($config['email_to'] ?? 'tehmehkomplex@inbox.ru'));
+$emailTo = trim((string) ($config['email_to'] ?? 'info@tehmehcomplex.ru'));
 $emailFrom = trim((string) ($config['email_from'] ?? 'noreply@tehmehcomplex.ru'));
 
 if ($emailTo === '') {

@@ -8,7 +8,7 @@
 |-----|------------|------------|
 | Домен и canonical | `romedov.by` | `tehmehcomplex.ru` |
 | Юрлицо, ИНН/ОГРН, банк | РБ | ООО «ТехМехКомплекс», Смоленск |
-| Телефон, email | +375… | +7…, tehmehkomplex@inbox.ru |
+| Телефон, email | +375… | +7…, info@tehmehcomplex.ru |
 | Гео производства | Борисов | Смоленск, другие координаты карты |
 | Schema.org | `ru-BY`, areaServed BY | `ru-RU`, areaServed RU |
 | Meta title/description главной | Свои формулировки | Другие формулировки |

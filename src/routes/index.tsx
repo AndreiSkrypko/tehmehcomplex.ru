@@ -85,7 +85,7 @@ export const Route = createFileRoute("/")({
               ],
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "ул. Докучаева, д. 5, оф. 1",
+                streetAddress: "ул. Докучаева, д. 5, оф. 11",
                 postalCode: "214030",
                 addressLocality: "Смоленск",
                 addressCountry: "RU",
