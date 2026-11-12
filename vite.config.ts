@@ -22,6 +22,7 @@ export default defineConfig({
         failOnError: true,
       },
       pages: [
+        { path: "/cases", prerender: { enabled: true } },
         ...EQUIPMENT_SLUGS.map((slug) => ({
           path: `/production/${slug}`,
           prerender: { enabled: true },

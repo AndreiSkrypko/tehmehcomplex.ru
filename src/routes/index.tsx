@@ -17,10 +17,9 @@ import {
   TELEGRAM_HREF,
   VIBER_HREF,
 } from "@/lib/contacts";
-import caseFlangesImg from "@/assets/case-flanges.jpg";
-import caseFrameImg from "@/assets/case-frame.jpg";
-import caseTurnedImg from "@/assets/case-turned.jpg";
+import { CaseStudyCard } from "@/components/site/CaseStudyCard";
 import heroShopImg from "@/assets/hero-shop.jpg";
+import { CASE_STUDIES_HOME } from "@/lib/cases";
 import { OG_HOME_IMAGE } from "@/lib/og-images";
 import { absoluteUrl } from "@/lib/seo";
 import { BANK_LINES, ORG_INN } from "@/lib/legal";
@@ -134,42 +133,6 @@ const ADVANTAGES = [
   {
     t: "Материалы под задачу",
     d: "Сталь, нержавейка, латунь, бронза и инженерные пластики — режимы под каждый сплав.",
-  },
-];
-
-const CASES = [
-  {
-    eyebrow: "Машиностроение",
-    title: "Крепёжная серия для агрегата",
-    img: caseFlangesImg,
-    alt: "Стальные фланцы после фрезерования на обрабатывающем центре",
-    place: "Смоленск",
-    kind: "Серия 80 шт.",
-    task: "Планшайбы с шлицем, допуск ±0,02 мм",
-    solution: "ЧПУ-фреза, калибровка, упаковка под отгрузку",
-    result: "Сдано за 7 рабочих дней, брак 0 %",
-  },
-  {
-    eyebrow: "Оборудование",
-    title: "Силовая рама станка",
-    img: caseFrameImg,
-    alt: "Сварная рама из листового металла после лазерной резки и гибки",
-    place: "Область",
-    kind: "Единичный проект",
-    task: "Рама по DXF, контроль диагоналей",
-    solution: "Лазер + гибка + сварка MIG",
-    result: "Монтаж у заказчика без подгонки",
-  },
-  {
-    eyebrow: "Цветной металл",
-    title: "Втулки из латуни Л63",
-    img: caseTurnedImg,
-    alt: "Латунные втулки после токарной обработки",
-    place: "Москва",
-    kind: "Приборостроение",
-    task: "60 втулок, внутренняя резьба M8",
-    solution: "Токарка ЧПУ, пассивация по согласованию",
-    result: "Повторный заказ через 3 недели",
   },
 ];
 
@@ -315,42 +278,22 @@ function Index() {
           </div>
 
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {CASES.map((c) => (
-              <article
-                key={c.title}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-border transition-colors hover:border-ink"
-              >
-                <div className="overflow-hidden bg-secondary">
-                  <img
-                    src={c.img}
-                    alt={c.alt}
-                    loading="lazy"
-                    width={900}
-                    height={540}
-                    className="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-
-                <div className="flex flex-1 flex-col p-5">
-                  <p className="font-display text-[10px] font-semibold uppercase tracking-[0.16em] text-lime-deep">
-                    {c.eyebrow}
-                  </p>
-                  <h3 className="mt-2 font-display text-base font-semibold uppercase leading-snug lg:text-lg">
-                    {c.title}
-                  </h3>
-                  <p className="mt-1.5 text-[11px] uppercase tracking-wider text-muted-foreground">
-                    {c.place} · {c.kind}
-                  </p>
-
-                  <p className="mt-4 text-sm font-medium leading-snug text-foreground">{c.result}</p>
-                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                    {c.task}
-                    <span className="mx-1.5 text-border">·</span>
-                    {c.solution}
-                  </p>
-                </div>
-              </article>
+            {CASE_STUDIES_HOME.map((study) => (
+              <CaseStudyCard key={study.id} study={study} variant="compact" />
             ))}
+          </div>
+
+          <div className="mt-12 flex flex-col items-start gap-4 border-t border-border pt-10 sm:flex-row sm:items-center sm:justify-between">
+            <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">
+              На отдельной странице — все кейсы с разбором задачи и решения.
+            </p>
+            <Link
+              to="/cases"
+              className="inline-flex items-center gap-2 rounded-full border border-ink bg-background px-7 py-3.5 font-display text-sm font-semibold uppercase tracking-[0.12em] text-foreground transition-colors hover:border-brand hover:bg-brand hover:text-brand-foreground"
+            >
+              Все кейсы
+              <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -441,9 +384,9 @@ function Index() {
             </div>
 
             <nav className="flex flex-col gap-3 text-sm uppercase tracking-wider">
-              <a href="#cases" className="transition-colors hover:text-brand">
+              <Link to="/cases" className="transition-colors hover:text-brand">
                 Кейсы
-              </a>
+              </Link>
               <a href="#products" className="transition-colors hover:text-brand">
                 Продукция
               </a>

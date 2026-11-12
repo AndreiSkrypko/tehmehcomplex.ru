@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CasesRouteImport } from './routes/cases'
 import { Route as GeoSlugRouteImport } from './routes/geo/$slug'
 import { Route as ProductionSlugRouteImport } from './routes/production/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasesRoute = CasesRouteImport.update({
+  id: '/cases',
+  path: '/cases',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GeoSlugRoute = GeoSlugRouteImport.update({
@@ -31,30 +37,34 @@ const ProductionSlugRoute = ProductionSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cases': typeof CasesRoute
   '/geo/$slug': typeof GeoSlugRoute
   '/production/$slug': typeof ProductionSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cases': typeof CasesRoute
   '/geo/$slug': typeof GeoSlugRoute
   '/production/$slug': typeof ProductionSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cases': typeof CasesRoute
   '/geo/$slug': typeof GeoSlugRoute
   '/production/$slug': typeof ProductionSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/geo/$slug' | '/production/$slug'
+  fullPaths: '/' | '/cases' | '/geo/$slug' | '/production/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/geo/$slug' | '/production/$slug'
-  id: '__root__' | '/' | '/geo/$slug' | '/production/$slug'
+  to: '/' | '/cases' | '/geo/$slug' | '/production/$slug'
+  id: '__root__' | '/' | '/cases' | '/geo/$slug' | '/production/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CasesRoute: typeof CasesRoute
   GeoSlugRoute: typeof GeoSlugRoute
   ProductionSlugRoute: typeof ProductionSlugRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cases': {
+      id: '/cases'
+      path: '/cases'
+      fullPath: '/cases'
+      preLoaderRoute: typeof CasesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/geo/$slug': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CasesRoute: CasesRoute,
   GeoSlugRoute: GeoSlugRoute,
   ProductionSlugRoute: ProductionSlugRoute,
 }
