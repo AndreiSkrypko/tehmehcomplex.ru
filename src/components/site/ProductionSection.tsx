@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import productionImg from "@/assets/production.jpg";
 import { LaserCutCalculatorModal } from "@/components/site/LaserCutCalculatorModal";
+import { TurningCalculatorModal } from "@/components/site/TurningCalculatorModal";
 import type { EquipmentItem } from "@/lib/equipment";
 import {
   EQUIPMENT_CASTING,
@@ -11,18 +12,22 @@ import {
 } from "@/lib/equipment";
 import { getEquipmentSeoOrFallback } from "@/lib/equipment-seo";
 import { LASER_EQUIPMENT_SLUG } from "@/lib/laser-cutting-rates";
+import { TURNING_EQUIPMENT_SLUG } from "@/lib/turning-rates";
 
 function ProductionRow({
   item,
   indexLabel,
   onOpenLaserCalculator,
+  onOpenTurningCalculator,
 }: {
   item: EquipmentItem;
   indexLabel: string;
   onOpenLaserCalculator?: () => void;
+  onOpenTurningCalculator?: () => void;
 }) {
   const seo = getEquipmentSeoOrFallback(item);
   const isLaser = item.slug === LASER_EQUIPMENT_SLUG;
+  const isTurning = item.slug === TURNING_EQUIPMENT_SLUG;
 
   return (
     <div className="group flex items-center gap-2 overflow-hidden border-t border-background/15 px-1 py-2.5 transition-colors first:border-t-0 hover:bg-background/5 sm:gap-3 sm:py-3 lg:px-0.5">
@@ -60,6 +65,16 @@ function ProductionRow({
         </button>
       )}
 
+      {isTurning && onOpenTurningCalculator && (
+        <button
+          type="button"
+          onClick={onOpenTurningCalculator}
+          className="shrink-0 rounded-full border border-brand/50 bg-brand/10 px-3 py-2 font-display text-[10px] font-semibold uppercase leading-tight tracking-[0.08em] text-brand transition-colors hover:bg-brand hover:text-brand-foreground sm:px-4 sm:text-[11px]"
+        >
+          Калькулятор
+        </button>
+      )}
+
       <Link
         to="/production/$slug"
         params={{ slug: item.slug }}
@@ -74,6 +89,7 @@ function ProductionRow({
 
 export function ProductionSection() {
   const [laserCalcOpen, setLaserCalcOpen] = useState(false);
+  const [turningCalcOpen, setTurningCalcOpen] = useState(false);
 
   return (
     <section
@@ -113,6 +129,9 @@ export function ProductionSection() {
                 onOpenLaserCalculator={
                   item.slug === LASER_EQUIPMENT_SLUG ? () => setLaserCalcOpen(true) : undefined
                 }
+                onOpenTurningCalculator={
+                  item.slug === TURNING_EQUIPMENT_SLUG ? () => setTurningCalcOpen(true) : undefined
+                }
               />
             ))}
 
@@ -142,6 +161,7 @@ export function ProductionSection() {
       </div>
 
       <LaserCutCalculatorModal open={laserCalcOpen} onOpenChange={setLaserCalcOpen} />
+      <TurningCalculatorModal open={turningCalcOpen} onOpenChange={setTurningCalcOpen} />
     </section>
   );
 }

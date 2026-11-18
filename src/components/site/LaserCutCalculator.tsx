@@ -49,9 +49,8 @@ export function LaserCutCalculator({ variant = "default", onRequestQuote }: Prop
             Калькулятор лазерной резки
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Сумма по длине реза в погонных метрах. Тариф зависит от толщины, материала и объёма
-            партии. Цены в российских рублях, без НДС, округление до целых — ориентир до проверки
-            DXF.
+            Сумма по длине реза в погонных метрах. Тарифы в ₽ (целые), на 60 % выше ориентира
+            romedov.by, без НДС — до проверки DXF.
           </p>
         </div>
       )}

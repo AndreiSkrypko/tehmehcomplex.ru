@@ -1,10 +1,12 @@
 ﻿import { Link } from "@tanstack/react-router";
 
 import { LaserCutCalculator } from "@/components/site/LaserCutCalculator";
+import { TurningCalculator } from "@/components/site/TurningCalculator";
 import type { EquipmentItem } from "@/lib/equipment";
 import { getEquipmentSeoOrFallback } from "@/lib/equipment-seo";
 import { getOtherEquipment } from "@/lib/equipment";
 import { LASER_EQUIPMENT_SLUG } from "@/lib/laser-cutting-rates";
+import { TURNING_EQUIPMENT_SLUG } from "@/lib/turning-rates";
 
 type EquipmentDetailProps = {
   equipment: EquipmentItem;
@@ -54,6 +56,14 @@ export function EquipmentDetail({ equipment, onRequest }: EquipmentDetailProps) 
                     className="rounded-full border border-background/35 bg-background/10 px-8 py-4 text-center font-display text-sm font-semibold uppercase tracking-[0.14em] text-background backdrop-blur-sm transition-colors hover:bg-background/20"
                   >
                     Калькулятор резки
+                  </a>
+                )}
+                {equipment.slug === TURNING_EQUIPMENT_SLUG && (
+                  <a
+                    href="#turning-calculator"
+                    className="rounded-full border border-background/35 bg-background/10 px-8 py-4 text-center font-display text-sm font-semibold uppercase tracking-[0.14em] text-background backdrop-blur-sm transition-colors hover:bg-background/20"
+                  >
+                    Калькулятор токарки
                   </a>
                 )}
                 <button
@@ -130,6 +140,17 @@ export function EquipmentDetail({ equipment, onRequest }: EquipmentDetailProps) 
         >
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <LaserCutCalculator onRequestQuote={onRequest} />
+          </div>
+        </section>
+      ) : null}
+
+      {equipment.slug === TURNING_EQUIPMENT_SLUG ? (
+        <section
+          id="turning-calculator"
+          className="scroll-mt-24 border-t border-border bg-background py-14 lg:py-20"
+        >
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <TurningCalculator onRequestQuote={onRequest} />
           </div>
         </section>
       ) : null}

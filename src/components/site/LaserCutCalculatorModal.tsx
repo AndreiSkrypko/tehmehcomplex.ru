@@ -22,7 +22,7 @@ export function LaserCutCalculatorModal({ open, onOpenChange }: Props) {
             Калькулятор лазерной резки
           </DialogTitle>
           <DialogDescription className="text-left text-sm leading-relaxed">
-            Предварительный расчёт в российских рублях (целые суммы), без НДС.
+            Предварительный расчёт в ₽ (целые), на 60 % выше белорусского ориентира, без НДС.
           </DialogDescription>
         </DialogHeader>
 

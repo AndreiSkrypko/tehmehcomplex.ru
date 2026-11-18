@@ -1,12 +1,14 @@
 /**
- * Базовый прайс лазера — в бел. рублях (BYN) за пог. м, без НДС.
- * На tehmehcomplex.ru пересчёт в ₽ с округлением до целых.
+ * Базовый прайс лазера — как на romedov.by (BYN за пог. м).
+ * На tehmehcomplex.ru — ₽, целые суммы, +60 % к белорусскому ориентиру.
  */
+
+import { RU_PRICE_FACTOR_VS_BY } from "@/lib/calculator-ru-pricing";
 
 export const LASER_EQUIPMENT_SLUG = "metatec-1530b";
 export const LASER_CURRENCY_LABEL = "₽";
 
-/** Курс пересчёта BYN → RUB (обновите при необходимости) */
+/** Курс BYN → ₽ до наценки */
 export const LASER_BYN_TO_RUB = 28;
 
 export type LaserMaterial = "carbon" | "stainless";
@@ -79,7 +81,7 @@ export function getLengthTierIndex(totalLengthM: number): number {
 }
 
 export function bynRateToRubRounded(rateByn: number): number {
-  return Math.round(rateByn * LASER_BYN_TO_RUB);
+  return Math.round(rateByn * LASER_BYN_TO_RUB * RU_PRICE_FACTOR_VS_BY);
 }
 
 export type LaserCutQuote = {
