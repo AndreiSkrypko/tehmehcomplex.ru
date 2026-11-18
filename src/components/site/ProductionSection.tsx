@@ -1,6 +1,8 @@
 ﻿import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 
 import productionImg from "@/assets/production.jpg";
+import { LaserCutCalculatorModal } from "@/components/site/LaserCutCalculatorModal";
 import type { EquipmentItem } from "@/lib/equipment";
 import {
   EQUIPMENT_CASTING,
@@ -8,23 +10,28 @@ import {
   EQUIPMENT_MATERIALS,
 } from "@/lib/equipment";
 import { getEquipmentSeoOrFallback } from "@/lib/equipment-seo";
+import { LASER_EQUIPMENT_SLUG } from "@/lib/laser-cutting-rates";
 
 function ProductionRow({
   item,
   indexLabel,
+  onOpenLaserCalculator,
 }: {
   item: EquipmentItem;
   indexLabel: string;
+  onOpenLaserCalculator?: () => void;
 }) {
   const seo = getEquipmentSeoOrFallback(item);
+  const isLaser = item.slug === LASER_EQUIPMENT_SLUG;
+
   return (
-    <Link
-      to="/production/$slug"
-      params={{ slug: item.slug }}
-      title={`${seo.h1}. ${item.groupDescription}`}
-      className="group flex items-center justify-between gap-3 overflow-hidden border-t border-background/15 px-1 py-2.5 transition-colors first:border-t-0 hover:bg-background/5 sm:gap-4 sm:py-3 lg:px-0.5"
-    >
-      <span className="flex min-h-0 min-w-0 flex-1 flex-col justify-center gap-1 overflow-hidden lg:gap-1.5">
+    <div className="group flex items-center gap-2 overflow-hidden border-t border-background/15 px-1 py-2.5 transition-colors first:border-t-0 hover:bg-background/5 sm:gap-3 sm:py-3 lg:px-0.5">
+      <Link
+        to="/production/$slug"
+        params={{ slug: item.slug }}
+        title={`${seo.h1}. ${item.groupDescription}`}
+        className="flex min-w-0 flex-1 flex-col justify-center gap-1 overflow-hidden lg:gap-1.5"
+      >
         <span className="flex min-w-0 items-baseline gap-3">
           <span className="shrink-0 font-display text-[10px] font-semibold tracking-widest text-background/40 transition-colors group-hover:text-brand lg:text-xs">
             {indexLabel}
@@ -41,18 +48,33 @@ function ProductionRow({
             {item.groupDescription}
           </span>
         </span>
-      </span>
-      <span
+      </Link>
+
+      {isLaser && onOpenLaserCalculator && (
+        <button
+          type="button"
+          onClick={onOpenLaserCalculator}
+          className="shrink-0 rounded-full border border-brand/50 bg-brand/10 px-3 py-2 font-display text-[10px] font-semibold uppercase leading-tight tracking-[0.08em] text-brand transition-colors hover:bg-brand hover:text-brand-foreground sm:px-4 sm:text-[11px]"
+        >
+          Калькулятор
+        </button>
+      )}
+
+      <Link
+        to="/production/$slug"
+        params={{ slug: item.slug }}
+        aria-label={`${seo.h1} — подробнее`}
         className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-background/30 text-lg text-background transition-all group-hover:border-brand group-hover:bg-brand group-hover:text-brand-foreground lg:h-9 lg:w-9"
-        aria-hidden
       >
         →
-      </span>
-    </Link>
+      </Link>
+    </div>
   );
 }
 
 export function ProductionSection() {
+  const [laserCalcOpen, setLaserCalcOpen] = useState(false);
+
   return (
     <section
       id="production"
@@ -84,7 +106,14 @@ export function ProductionSection() {
 
           <div className="order-3 flex flex-col border-y border-background/15 lg:order-2">
             {EQUIPMENT_MACHINING.map((item, i) => (
-              <ProductionRow key={item.slug} item={item} indexLabel={`0${i + 1}`} />
+              <ProductionRow
+                key={item.slug}
+                item={item}
+                indexLabel={`0${i + 1}`}
+                onOpenLaserCalculator={
+                  item.slug === LASER_EQUIPMENT_SLUG ? () => setLaserCalcOpen(true) : undefined
+                }
+              />
             ))}
 
             {EQUIPMENT_MATERIALS.length > 0 && (
@@ -111,6 +140,8 @@ export function ProductionSection() {
           </div>
         </div>
       </div>
+
+      <LaserCutCalculatorModal open={laserCalcOpen} onOpenChange={setLaserCalcOpen} />
     </section>
   );
 }

@@ -1,8 +1,10 @@
 ﻿import { Link } from "@tanstack/react-router";
 
+import { LaserCutCalculator } from "@/components/site/LaserCutCalculator";
 import type { EquipmentItem } from "@/lib/equipment";
 import { getEquipmentSeoOrFallback } from "@/lib/equipment-seo";
 import { getOtherEquipment } from "@/lib/equipment";
+import { LASER_EQUIPMENT_SLUG } from "@/lib/laser-cutting-rates";
 
 type EquipmentDetailProps = {
   equipment: EquipmentItem;
@@ -45,12 +47,23 @@ export function EquipmentDetail({ equipment, onRequest }: EquipmentDetailProps) 
               <p className="mt-3 text-sm text-background/60">
                 Смоленск · точность до 0,02 мм · консультация бесплатно
               </p>
-              <button
-                onClick={onRequest}
-                className="mt-8 rounded-full bg-brand px-8 py-4 font-display text-sm font-semibold uppercase tracking-[0.14em] text-brand-foreground transition-transform hover:-translate-y-0.5"
-              >
-                Рассчитать стоимость
-              </button>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                {equipment.slug === LASER_EQUIPMENT_SLUG && (
+                  <a
+                    href="#laser-calculator"
+                    className="rounded-full border border-background/35 bg-background/10 px-8 py-4 text-center font-display text-sm font-semibold uppercase tracking-[0.14em] text-background backdrop-blur-sm transition-colors hover:bg-background/20"
+                  >
+                    Калькулятор резки
+                  </a>
+                )}
+                <button
+                  type="button"
+                  onClick={onRequest}
+                  className="rounded-full bg-brand px-8 py-4 font-display text-sm font-semibold uppercase tracking-[0.14em] text-brand-foreground transition-transform hover:-translate-y-0.5"
+                >
+                  Рассчитать стоимость
+                </button>
+              </div>
             </div>
 
             <div className="overflow-hidden rounded-2xl border border-background/15 bg-background/5 shadow-2xl shadow-black/20">
@@ -109,6 +122,17 @@ export function EquipmentDetail({ equipment, onRequest }: EquipmentDetailProps) 
           </div>
         </div>
       </section>
+
+      {equipment.slug === LASER_EQUIPMENT_SLUG ? (
+        <section
+          id="laser-calculator"
+          className="scroll-mt-24 border-t border-border bg-background py-14 lg:py-20"
+        >
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <LaserCutCalculator onRequestQuote={onRequest} />
+          </div>
+        </section>
+      ) : null}
 
       <section className="border-t border-border bg-secondary py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
